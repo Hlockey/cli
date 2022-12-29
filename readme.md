@@ -1,6 +1,6 @@
 Hlockey console application.
 
-## Installation
+## Installation (once released)
 ```sh
 gem install hlockey-cli
 ```
