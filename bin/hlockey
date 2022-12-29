@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require("hlockey-cli")
+Hlockey_CLI.main
