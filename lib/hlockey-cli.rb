@@ -3,7 +3,7 @@ require("hlockey-cli/actions")
 require("hlockey-cli/user_selection")
 require("hlockey-cli/version")
 
-module Hlockey_CLI
+module HlockeyCLI
   def self.main
     puts("Please wait...")
 
@@ -19,8 +19,8 @@ module Hlockey_CLI
       # Will exit program if invalid option chosen
       Actions.send(
         user_selection(Actions.methods(false),
-                       default: :exit,
-                       str_process: proc { |str| str.capitalize.sub("_", " ") })
+          default: :exit,
+          str_process: proc { |str| str.capitalize.sub("_", " ") })
       )
     end
   end

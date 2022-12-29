@@ -1,6 +1,6 @@
 require("hlockey-cli/user_selection")
 
-module Hlockey_CLI::Actions
+module HlockeyCLI::Actions
   def self.games
     if Hlockey::League.games.empty?
       puts(Hlockey::Messages.NoGames)
@@ -42,7 +42,7 @@ module Hlockey_CLI::Actions
       player.stats.each { |stat, value| puts("      #{stat}: #{value.round(1)}") }
     end
     puts("  wins: #{team.wins}")
-      puts("  losses: #{team.losses}")
+    puts("  losses: #{team.losses}")
   end
 
   def self.election
