@@ -7,7 +7,8 @@ module HlockeyCLI::Actions
       return
     end
 
-    game = user_selection(Hlockey::League.games)
+    game = user_selection(Hlockey::League.games,
+      str_process: proc { |game| game.to_s + "\n       Weather: #{game.weather}" })
     return if game.nil?
 
     puts("#{game.home.emoji} #{game} #{game.away.emoji}")
