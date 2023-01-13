@@ -1,20 +1,20 @@
 require("hlockey-cli/user_selection")
 
 module HlockeyCLI::Actions
-  def self.games
-    if Hlockey::League.games.empty?
+  def self.games(league)
+    if league.games.empty?
       puts(Hlockey::Messages.NoGames)
       return
     end
 
-    game = user_selection(Hlockey::League.games,
+    game = user_selection(league.games,
       str_process: proc { |game| game.to_s + "\n       Weather: #{game.weather}" })
     return if game.nil?
 
     puts("#{game.home.emoji} #{game} #{game.away.emoji}")
 
     loop do
-      Hlockey::League.update_state
+      league.update_state
       game.stream.each(&method(:puts))
 
       break unless game.in_progress
@@ -24,17 +24,17 @@ module HlockeyCLI::Actions
     end
   end
 
-  def self.standings
-    if Hlockey::League.champion_team
-      puts(Hlockey::Messages.SeasonChampion(Hlockey::League.champion_team))
-    elsif Hlockey::League.playoff_teams
-      put_standings("Playoffs", Hlockey::League.playoff_teams)
+  def self.standings(league)
+    if league.champion_team
+      puts(Hlockey::Messages.SeasonChampion(league.champion_team))
+    elsif league.playoff_teams
+      put_standings("Playoffs", league.playoff_teams)
     end
-    Hlockey::League.divisions.each(&method(:put_standings))
+    league.divisions.each(&method(:put_standings))
   end
 
-  def self.team_info
-    team = user_selection(Hlockey::League.teams)
+  def self.team_info(league)
+    team = user_selection(league.teams)
     return if team.nil?
 
     puts("#{team.emoji} #{team}")

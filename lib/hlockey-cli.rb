@@ -7,20 +7,20 @@ module HlockeyCLI
   def self.main
     puts("Please wait...")
 
-    Hlockey::League.start
+    league = Hlockey::League.new
 
-    if Time.now < Hlockey::League.start_time
-      puts(Hlockey::Messages.SeasonStarts(Hlockey::League.start_time))
+    if Time.now < league.start_time
+      puts(Hlockey::Messages.SeasonStarts(league.start_time))
     end
 
     loop do
-      Hlockey::League.update_state
-      puts(Hlockey::Messages.SeasonDay(Hlockey::League.day))
+      league.update_state
+      puts(Hlockey::Messages.SeasonDay(league.day))
       # Will exit program if invalid option chosen
       Actions.send(
         user_selection(Actions.methods(false),
           default: :exit,
-          str_process: proc { |str| str.capitalize.sub("_", " ") })
+          str_process: proc { |str| str.capitalize.sub("_", " ") }), league
       )
     end
   end

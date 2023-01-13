@@ -12,7 +12,10 @@ module HlockeyCLI
     # 1 is subracted to undo adding 1 earlier
     choice_idx = $stdin.gets - 1
 
-    return choices[choice_idx] if !choice_idx.negative? && choice_idx < choices.length
-    default
+    if !choice_idx.negative? && choice_idx < choices.length
+      choices[choice_idx]
+    else
+      default
+    end
   end
 end
