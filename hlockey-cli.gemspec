@@ -2,7 +2,7 @@ require_relative("lib/hlockey-cli/version")
 
 Gem::Specification.new do |s|
   s.name = "hlockey-cli"
-  s.version = Hlockey_CLI::VERSION
+  s.version = HlockeyCLI::VERSION
   s.summary = "Enjoy Hlockey from your terminal."
   s.description = "Hlockey console application."
   s.authors = ["Lavender Perry"]

@@ -7,10 +7,10 @@ module HlockeyCLI
     choices.each_with_index do |choice, i|
       puts("#{(i + 1).to_s.rjust(2)} - #{str_process.call(choice)}")
     end
-    puts("anything else - #{str_process.call(default) || "Back"}")
+    puts("anything else - #{default || "Back"}")
 
     # 1 is subracted to undo adding 1 earlier
-    choice_idx = $stdin.gets - 1
+    choice_idx = $stdin.gets.to_i - 1
 
     if !choice_idx.negative? && choice_idx < choices.length
       choices[choice_idx]

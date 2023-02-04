@@ -16,12 +16,16 @@ module HlockeyCLI
     loop do
       league.update_state
       puts(Hlockey::Messages.SeasonDay(league.day))
-      # Will exit program if invalid option chosen
-      Actions.send(
-        user_selection(Actions.methods(false),
-          default: :exit,
-          str_process: proc { |str| str.capitalize.sub("_", " ") }), league
+
+      selected_action = user_selection(
+        Actions::ACTIONS,
+        default: :Exit,
+        str_process: proc { |s| s.to_s.capitalize.sub("_", " ") }
       )
+      if selected_action == :Exit
+        exit
+      end
+      Actions.send(selected_action, league)
     end
   end
 end
